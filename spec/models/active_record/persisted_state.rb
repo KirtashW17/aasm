@@ -8,5 +8,8 @@ class PersistedState < ActiveRecord::Base
     event :release do
       transitions :from => [:alpha, :beta, :gamma], :to => :beta
     end
+    event :restart do
+      transitions to: :alpha
+    end
   end
 end

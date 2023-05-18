@@ -344,6 +344,17 @@ describe AASM::Core::Transition, '- when executing the transition with a Class' 
     expect(return_value).to eq('from: foo to: bar')
   end
 
+  it 'todo' do
+    state_machine.current_state = 'foo'
+    opts = {:to => 'bar', :after => AfterTransitionClass}
+    transition = AASM::Core::Transition.new(event, opts)
+    obj = double('object', :aasm => AASM::InstanceBase.new('object'))
+
+    return_value = transition.execute(obj)
+
+    expect(return_value).to eq('from: foo to: bar')
+  end
+
   it 'should pass args to the initialize method on the class if it accepts them' do
     opts = {:from => 'foo', :to => 'bar', :after => AfterTransitionClassWithArgs}
     st = AASM::Core::Transition.new(event, opts)

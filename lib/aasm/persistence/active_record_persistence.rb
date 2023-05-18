@@ -99,7 +99,7 @@ module AASM
           write_attribute(name, value)
         end
 
-        
+
         def aasm_transaction(requires_new, requires_lock)
           self.class.transaction(:requires_new => requires_new) do
             lock!(requires_lock) if requires_lock

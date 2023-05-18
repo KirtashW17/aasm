@@ -91,7 +91,6 @@ if defined?(ActiveRecord)
 
     it "uses the persistence storage" do
       o = PersistedState.new
-      o.release
       expect(o.transient_store).to be_nil
     end
 
@@ -100,5 +99,16 @@ if defined?(ActiveRecord)
       o.release
       expect(o.transient_store).to eql :beta
     end
+
+    it 'todo' do
+      # MOVE TO BETTER FILE OR CONTEXT.
+
+      o = PersistedState.new
+      o.release
+      expect(o.aasm.from_state).to eq(:alpha)
+      o.restart
+      expect(o.aasm.from_state).to eq(:beta)
+    end
+
   end
 end
